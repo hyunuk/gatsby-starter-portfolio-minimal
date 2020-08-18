@@ -6,7 +6,7 @@ module.exports = {
     siteDescription: "Hyunuk's website for the portfolio.",
     siteUrl: "https://hyunuk.github.io/",
     siteLanguage: "en_US",
-    siteIcon: "src/config/icon.png", // Relative to gatsby-config file
+    siteIcon: "src/config/icon-blue.png", // Relative to gatsby-config file
 
     splashScreen: false, // Set this to true if you want to use the splash screen
 
