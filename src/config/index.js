@@ -1,12 +1,12 @@
 module.exports = {
 
-    author: "@konstantinmuenster",
-    siteTitle: "Gatsby Starter Portfolio Minimal",
-    siteShortTitle: "Gatsby", // Used as logo text in header, footer, and splash screen
-    siteDescription: "A modern one-page portfolio with a clean yet expressive design.",
-    siteUrl: "https://gatsby-starter-portfolio-minimal.netlify.app/",
+    author: "@hyunuk",
+    siteTitle: "Hyunuk",
+    siteShortTitle: "현욱", // Used as logo text in header, footer, and splash screen
+    siteDescription: "Hyunuk's website for the portfolio.",
+    siteUrl: "https://hyunuk.github.io/",
     siteLanguage: "en_US",
-    siteIcon: "src/content/favicon.png", // Relative to gatsby-config file
+    siteIcon: "src/config/icon.png", // Relative to gatsby-config file
 
     splashScreen: false, // Set this to true if you want to use the splash screen
 
@@ -20,34 +20,26 @@ module.exports = {
     socialMedia: [
         {
             name: "Linkedin",
-            url: "https://www.linkedin.com/in/konstantin-muenster/"
-        },
-        {
-            name: "Medium",
-            url: "https://medium.com/@konstantin.muenster"
+            url: "https://www.linkedin.com/in/hyunuk/"
         },
         {
             name: "Github",
-            url: "https://github.com/konstantinmuenster/gatsby-starter-portfolio-minimal"
+            url: "https://github.com/hyunuk"
         },
         {
-            name: "Behance",
-            url: "https://www.behance.net/konstanmnster"
-        },
+            name: "Resume",
+            url: "/Resume_Hyunuk_Lim.pdf"
+        }
     ],
   
     navLinks: {
         menu: [
             {
-                name: "Articles",
-                url: "/#articles",
-            },
-            {
                 name: "About Me",
                 url: "/#about",
             },
             {
-                name: "Features",
+                name: "Projects",
                 url: "/#projects",
             },
         ],
@@ -57,14 +49,5 @@ module.exports = {
         }
     },
 
-    footerLinks: [
-        {
-            name: "Privacy",
-            url: "/privacy"
-        },
-        {
-            name: "Imprint",
-            url: "/imprint"
-        }
-    ]
+    footerLinks: []
 }
