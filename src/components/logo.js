@@ -7,11 +7,13 @@ import config from "../config"
 const { siteShortTitle } = config
 
 const StyledLogo = styled.div`
+  @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
   position: relative;
   z-index: 13;
 
   font-size: ${({ size }) => (size ? size : "1.75rem")};
   font-weight: 900;
+  font-family: 'Jua', sans-serif;
   color: ${({ theme, color }) => theme.colors[color] || color };
 
   /* Disable effects when sidebar is open */
