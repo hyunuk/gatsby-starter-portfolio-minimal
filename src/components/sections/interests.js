@@ -41,14 +41,10 @@ const StyledContentWrapper = styled(ContentWrapper)`
 `
 
 const StyledInterests = styled.div`
+  width: 100%;
   display: grid;
-  /* Calculate how many columns are needed, depending on interests count */
-  grid-template-columns: repeat(
-    ${({ itemCount }) => Math.ceil(itemCount / 2)},
-    15.625rem
-  );
-  grid-template-rows: repeat(2, auto);
-  grid-auto-flow: column;
+  grid-auto-flow: row dense;
+  grid-template-columns: repeat(3, calc(100% / 3));
   column-gap: 1rem;
   row-gap: 1rem;
   padding: 0 2.5rem;
@@ -64,12 +60,16 @@ const StyledInterests = styled.div`
     width: ${({ itemCount }) =>
       Math.ceil(itemCount / 2) % 2 === 1 ? "17.125rem" : "2.5rem"};
   }
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    grid-auto-flow: row;
-    grid-template-columns: repeat(3, 15.625rem);
-    overflow: visible;
-    padding: 0;
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    grid-template-columns: repeat(2, calc(100% / 2));
+    margin: auto;
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.xs}) {
+    grid-template-columns: 100%;
+    margin: auto;
+  }
+
   /* Show scrollbar if desktop and wrapper width > viewport width */
   @media (hover: hover) {
     &::-webkit-scrollbar {
@@ -93,8 +93,11 @@ const StyledInterests = styled.div`
     }
   }
 
+  button {
+    width: 100%;
+  }
+
   .interest {
-    width: 15.625rem;
     height: 3rem;
     display: flex;
     justify-content: flex-start;
