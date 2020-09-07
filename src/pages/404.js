@@ -1,9 +1,9 @@
-import React from "react"
-import styled from "styled-components"
+import React from 'react'
+import styled from 'styled-components'
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import ContentWrapper from "../styles/ContentWrapper"
+import Layout from '../components/layout'
+import SEO from '../components/seo'
+import ContentWrapper from '../styles/ContentWrapper'
 
 const StyledSection = styled.section`
   width: 100%;
@@ -28,15 +28,15 @@ const StyledContentWrapper = styled(ContentWrapper)`
 `
 
 const NotFoundPage = () => (
-  <Layout splashScreen={false}>
-    <SEO title="404: Not found" meta={[{ name: 'robots', content: 'noindex'}]} />
-    <StyledSection>
-      <StyledContentWrapper>
-        <h1>NOT FOUND</h1>
-        <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-      </StyledContentWrapper>
-    </StyledSection>
-  </Layout>
+    <Layout splashScreen={false}>
+        <SEO title="404: Not found" meta={[{ name: 'robots', content: 'noindex' }]} />
+        <StyledSection>
+            <StyledContentWrapper>
+                <h1>NOT FOUND</h1>
+                <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+            </StyledContentWrapper>
+        </StyledSection>
+    </Layout>
 )
 
 export default NotFoundPage

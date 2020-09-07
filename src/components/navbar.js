@@ -1,8 +1,8 @@
-import React from "react"
-import styled from "styled-components"
-import { Link } from "gatsby"
+import React from 'react'
+import styled from 'styled-components'
+import { Link } from 'gatsby'
 
-import config from "../config/"
+import config from '../config'
 
 const { navLinks } = config
 
@@ -57,19 +57,17 @@ const StyledNav = styled.nav`
 `
 
 const Navbar = () => {
-  const { menu, button } = navLinks
-  return (
-    <StyledNav>
-      {menu.map(({ name, url }, key) => {
-        return (
-          <Link className="nav-link" key={key} to={url}>
-            {name}
-          </Link>
-        )
-      })}
-      <Link className="cta-btn" to={button.url}>{button.name}</Link>
-    </StyledNav>
-  )
+    const { menu, button } = navLinks
+    return (
+        <StyledNav>
+            {menu.map(({ name, url }, key) => (
+                <Link className="nav-link" key={key} to={url}>
+                    {name}
+                </Link>
+            ))}
+            <Link className="cta-btn" to={button.url}>{button.name}</Link>
+        </StyledNav>
+    )
 }
 
 export default Navbar

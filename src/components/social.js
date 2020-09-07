@@ -1,9 +1,9 @@
-import React from "react"
-import PropTypes from "prop-types"
-import styled from "styled-components"
+import React from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
-import config from "../config/"
-import Icon from "./icons"
+import config from '../config'
+import Icon from './icons'
 
 const { socialMedia } = config
 
@@ -62,7 +62,7 @@ const StyledSocialWrapper = styled.div`
 `
 
 const StyledSocialProfile = styled.a`
-  width: ${({ width }) => (width ? width : "auto")};
+  width: ${({ width }) => (width || 'auto')};
   height: auto;
   background: ${({ theme }) => theme.colors.background};
   background: linear-gradient(
@@ -74,9 +74,9 @@ const StyledSocialProfile = styled.a`
   background-position: right bottom;
   border-radius: ${({ theme }) => theme.borderRadius};
   border: 0.125rem solid ${({ theme }) => theme.colors.primary};
-  padding: ${({ padding }) => (padding ? padding : ".3rem 1.25rem")};
+  padding: ${({ padding }) => (padding || '.3rem 1.25rem')};
   transition: all 0.1s ease-out;
-  font-size: ${({ fontSize }) => (fontSize ? fontSize : "1rem")};
+  font-size: ${({ fontSize }) => (fontSize || '1rem')};
   font-weight: 500;
   color: ${({ theme }) => theme.colors.primary};
   &:hover {
@@ -95,34 +95,36 @@ const StyledSocialProfile = styled.a`
   }
 `
 
-const Social = ({ width, padding, fontSize, fontWeight, withIcon }) => (
-  <StyledSocialWrapper itemCount={socialMedia.length}>
-    {socialMedia.map(({ name, url }, key) => {
-      return (
-        <StyledSocialProfile
-          key={key}
-          href={url}
-          target="_blank"
-          rel="nofollow noopener noreferrer"
-          aria-label={name}
-          width={width}
-          padding={padding}
-          fontSize={fontSize}
-          fontWeight={fontWeight}
-        >
-          {withIcon ? <Icon name={name} /> : null} {name}
-        </StyledSocialProfile>
-      )
-    })}
-  </StyledSocialWrapper>
+const Social = ({
+    width, padding, fontSize, fontWeight, withIcon,
+}) => (
+    <StyledSocialWrapper itemCount={socialMedia.length}>
+        {socialMedia.map(({ name, url }, key) => (
+            <StyledSocialProfile
+                key={key}
+                href={url}
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                aria-label={name}
+                width={width}
+                padding={padding}
+                fontSize={fontSize}
+                fontWeight={fontWeight}
+            >
+                {withIcon ? <Icon name={name} /> : null}
+                {' '}
+                {name}
+            </StyledSocialProfile>
+        ))}
+    </StyledSocialWrapper>
 )
 
 Social.propTypes = {
-  width: PropTypes.string,
-  padding: PropTypes.string,
-  fontSize: PropTypes.string,
-  fontWeight: PropTypes.string,
-  withIcon: PropTypes.bool,
+    width: PropTypes.string,
+    padding: PropTypes.string,
+    fontSize: PropTypes.string,
+    fontWeight: PropTypes.string,
+    withIcon: PropTypes.bool,
 }
 
 export default Social

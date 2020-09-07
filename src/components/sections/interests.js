@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useRef } from "react"
-import PropTypes from "prop-types"
-import styled from "styled-components"
-import Img from "gatsby-image"
-import { motion, useAnimation } from "framer-motion"
+import React, { useState, useEffect, useRef } from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
+import Img from 'gatsby-image'
+import { motion, useAnimation } from 'framer-motion'
 
-import { detectMobileAndTablet, isSSR } from "../../utils"
-import { useOnScreen }  from "../../hooks/"
-import ContentWrapper from "../../styles/ContentWrapper"
-import Button from "../../styles/Button"
+import { detectMobileAndTablet, isSSR } from '../../utils'
+import { useOnScreen } from '../../hooks'
+import ContentWrapper from '../../styles/ContentWrapper'
+import Button from '../../styles/Button'
 
 const StyledSection = styled.section`
   width: 100%;
@@ -57,8 +57,7 @@ const StyledInterests = styled.div`
   /* Workaround: https://stackoverflow.com/questions/38993170/last-margin-padding-collapsing-in-flexbox-grid-layout */
   &::after {
     content: "";
-    width: ${({ itemCount }) =>
-      Math.ceil(itemCount / 2) % 2 === 1 ? "17.125rem" : "2.5rem"};
+    width: ${({ itemCount }) => (Math.ceil(itemCount / 2) % 2 === 1 ? '17.125rem' : '2.5rem')};
   }
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     grid-template-columns: repeat(2, calc(100% / 2));
@@ -112,88 +111,90 @@ const StyledInterests = styled.div`
 `
 
 const Interests = ({ content }) => {
-  const { exports, frontmatter } = content[0].node
-  const { shownItems, interests } = exports
+    const { exports, frontmatter } = content[0].node
+    const { shownItems, interests } = exports
 
-  const [shownInterests, setShownInterests] = useState(shownItems)
+    const [shownInterests, setShownInterests] = useState(shownItems)
 
-  const ref = useRef()
-  const onScreen = useOnScreen(ref)
+    const ref = useRef()
+    const onScreen = useOnScreen(ref)
 
-  const iControls = useAnimation()
-  const bControls = useAnimation()
+    const iControls = useAnimation()
+    const bControls = useAnimation()
 
-  useEffect(() => {
+    useEffect(() => {
     // If mobile or tablet, show all interests initially
     // Otherwise interests.mdx will determine how many interests are shown
     // (isSSR) is used to prevent error during gatsby build
-    if (!isSSR && detectMobileAndTablet(window.innerWidth)) {
-      setShownInterests(interests.length)
-    }
-  }, [interests])
+        if (!isSSR && detectMobileAndTablet(window.innerWidth)) {
+            setShownInterests(interests.length)
+        }
+    }, [interests])
 
-  useEffect(() => {
-    const sequence = async () => {
-      if (onScreen) {
-        // i receives the value of the custom prop - can be used to stagger
-        // the animation of each "interest" element
-        await iControls.start(i => ({
-          opacity: 1, scaleY: 1, transition: { delay: i * 0.1 }
-        }))
-        await bControls.start({ opacity: 1, scaleY: 1 })
-      }
-    }
-    sequence()
-  }, [onScreen, shownInterests, iControls, bControls])
+    useEffect(() => {
+        const sequence = async () => {
+            if (onScreen) {
+                // i receives the value of the custom prop - can be used to stagger
+                // the animation of each "interest" element
+                await iControls.start(i => ({
+                    opacity: 1, scaleY: 1, transition: { delay: i * 0.1 },
+                }))
+                await bControls.start({ opacity: 1, scaleY: 1 })
+            }
+        }
+        sequence()
+    }, [onScreen, shownInterests, iControls, bControls])
 
-  const showMoreItems = () => setShownInterests(shownInterests + 4)
+    const showMoreItems = () => setShownInterests(shownInterests + 4)
 
-  return (
-    <StyledSection id="interests">
-      <StyledContentWrapper>
-        <h3 className="section-title">{frontmatter.title}</h3>
-        <StyledInterests itemCount={interests.length} ref={ref}>
-          {interests.slice(0, shownInterests).map(({ name, icon }, key) => (
-            <motion.div 
-              className="interest" 
-              key={key} 
-              custom={key} 
-              initial={{ opacity: 0, scaleY: 0 }}
-              animate={iControls}
-            >
-                <Img className="icon" fixed={icon.childImageSharp.fixed} /> {name}
-            </motion.div>
-          ))}
-          {shownInterests < interests.length && (
-            <motion.div initial={{ opacity: 0, scaleY: 0 }} animate={bControls}>
-              <Button
-                onClick={() => showMoreItems()}
-                type="button"
-                textAlign="left"
-                color="primary"
-              >
-                + Load more
-              </Button>
-            </motion.div>
-          )}
-        </StyledInterests>
-      </StyledContentWrapper>
-    </StyledSection>
-  )
+    return (
+        <StyledSection id="interests">
+            <StyledContentWrapper>
+                <h3 className="section-title">{frontmatter.title}</h3>
+                <StyledInterests itemCount={interests.length} ref={ref}>
+                    {interests.slice(0, shownInterests).map(({ name, icon }, key) => (
+                        <motion.div
+                            className="interest"
+                            key={key}
+                            custom={key}
+                            initial={{ opacity: 0, scaleY: 0 }}
+                            animate={iControls}
+                        >
+                            <Img className="icon" fixed={icon.childImageSharp.fixed} />
+                            {' '}
+                            {name}
+                        </motion.div>
+                    ))}
+                    {shownInterests < interests.length && (
+                        <motion.div initial={{ opacity: 0, scaleY: 0 }} animate={bControls}>
+                            <Button
+                                onClick={() => showMoreItems()}
+                                type="button"
+                                textAlign="left"
+                                color="primary"
+                            >
+                                + Load more
+                            </Button>
+                        </motion.div>
+                    )}
+                </StyledInterests>
+            </StyledContentWrapper>
+        </StyledSection>
+    )
 }
 
 Interests.propTypes = {
-  content: PropTypes.arrayOf(
-    PropTypes.shape({
-      node: PropTypes.shape({
-        exports: PropTypes.shape({
-          interests: PropTypes.array.isRequired,
-          shownItems: PropTypes.number.isRequired,
+    content: PropTypes.arrayOf(
+        PropTypes.shape({
+            node: PropTypes.shape({
+                exports: PropTypes.shape({
+                    interests: PropTypes.array.isRequired,
+                    shownItems: PropTypes.number.isRequired,
+                }).isRequired,
+                frontmatter: PropTypes.object.isRequired,
+            }).isRequired,
         }).isRequired,
-        frontmatter: PropTypes.object.isRequired,
-      }).isRequired,
-    }).isRequired
-  ).isRequired,
+    ).isRequired,
 }
 
 export default Interests

@@ -1,10 +1,10 @@
-import React from "react"
-import { Link } from "gatsby"
-import styled from "styled-components"
+import React from 'react'
+import { Link } from 'gatsby'
+import styled from 'styled-components'
 
-import Config from "../config/"
-import ContentWrapper from "../styles/ContentWrapper"
-import Logo from "./logo"
+import Config from '../config'
+import ContentWrapper from '../styles/ContentWrapper'
+import Logo from './logo'
 
 const { footerLinks } = Config
 
@@ -43,18 +43,18 @@ const StyledLink = styled(Link)`
 `
 
 const Footer = () => (
-  <StyledFooter>
-    <StyledContentWrapper>
-      <Link to="/" aria-label="home">
-        <Logo color="white" size="1.5rem" />
-      </Link>
-      <div className="footer-links">
-        {footerLinks.map(({ name, url }, key) => (
-          <StyledLink key={key} to={url}>{name}</StyledLink>
-        ))}
-      </div>
-    </StyledContentWrapper>
-  </StyledFooter>
+    <StyledFooter>
+        <StyledContentWrapper>
+            <Link to="/" aria-label="home">
+                <Logo color="white" size="1.5rem" />
+            </Link>
+            <div className="footer-links">
+                {footerLinks.map(({ name, url }, key) => (
+                    <StyledLink key={key} to={url}>{name}</StyledLink>
+                ))}
+            </div>
+        </StyledContentWrapper>
+    </StyledFooter>
 )
 
 export default Footer

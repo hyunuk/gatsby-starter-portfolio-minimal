@@ -1,29 +1,29 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { graphql } from "gatsby"
+import React from 'react'
+import PropTypes from 'prop-types'
+import { graphql } from 'gatsby'
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import Hero from "../components/sections/hero"
-import About from "../components/sections/about"
-import Interests from "../components/sections/interests"
-import Projects from "../components/sections/projects"
-import Contact from "../components/sections/contact"
-import { splashScreen } from "../config"
+import Layout from '../components/layout'
+import SEO from '../components/seo'
+import Hero from '../components/sections/hero'
+import About from '../components/sections/about'
+import Interests from '../components/sections/interests'
+import Projects from '../components/sections/projects'
+import Contact from '../components/sections/contact'
+import { splashScreen } from '../config'
 
 const IndexPage = ({ data }) => (
-  <Layout splashScreen={splashScreen}>
-    <SEO title="Hyunuk's Portfolio Website" />
-    <Hero content={data.hero.edges} />
-    <About content={data.about.edges} />
-    <Interests content={data.interests.edges} />
-    <Projects content={data.projects.edges} />
-    <Contact content={data.contact.edges} />
-  </Layout>
+    <Layout splashScreen={splashScreen}>
+        <SEO title="Hyunuk's Portfolio Website" />
+        <Hero content={data.hero.edges} />
+        <About content={data.about.edges} />
+        <Interests content={data.interests.edges} />
+        <Projects content={data.projects.edges} />
+        <Contact content={data.contact.edges} />
+    </Layout>
 )
 
 IndexPage.propTypes = {
-  data: PropTypes.object.isRequired,
+    data: PropTypes.object.isRequired,
 }
 
 export default IndexPage
