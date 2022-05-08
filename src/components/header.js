@@ -73,61 +73,61 @@ const StyledBurger = styled.button`
 `
 
 const Header = () => {
-    const { isIntroDone } = useContext(Context).state
-    const [open, setOpen] = useState(false)
-    const [windowWidth, setWindowWidth] = useState(0)
+  const { isIntroDone } = useContext(Context).state
+  const [open, setOpen] = useState(false)
+  const [windowWidth, setWindowWidth] = useState(0)
 
-    useEffect(() => {
-        let handleWindowSizeChange
-        // if (isSSR) is necessary to prevent error during the gatsby build
-        if (!isSSR) {
-            handleWindowSizeChange = () => setWindowWidth(window.innerWidth)
-            // set initial innerWidth when component mounts
-            setWindowWidth(window.innerWidth)
-        }
-        // Add event listener to update windowWidth in state
-        window.addEventListener('resize', handleWindowSizeChange)
-        return () => window.removeEventListener('resize', handleWindowSizeChange)
-    }, [windowWidth])
+  useEffect(() => {
+    let handleWindowSizeChange
+    // if (isSSR) is necessary to prevent error during the gatsby build
+    if (!isSSR) {
+      handleWindowSizeChange = () => setWindowWidth(window.innerWidth)
+      // set initial innerWidth when component mounts
+      setWindowWidth(window.innerWidth)
+    }
+    // Add event listener to update windowWidth in state
+    window.addEventListener('resize', handleWindowSizeChange)
+    return () => window.removeEventListener('resize', handleWindowSizeChange)
+  }, [windowWidth])
 
-    // Required for animation - start after the splashScreen sequence is done
-    const controls = useAnimation()
-    useEffect(() => {
-        if (isIntroDone) controls.start({ opacity: 1, y: 0, transition: { delay: 0.2 } })
-    }, [isIntroDone, controls])
+  // Required for animation - start after the splashScreen sequence is done
+  const controls = useAnimation()
+  useEffect(() => {
+    if (isIntroDone) controls.start({ opacity: 1, y: 0, transition: { delay: 0.2 } })
+  }, [isIntroDone, controls])
 
-    let navigation
-    if (detectMobileAndTablet(windowWidth)) {
-        navigation = (
-            <>
-                <StyledBurger
+  let navigation
+  if (detectMobileAndTablet(windowWidth)) {
+    navigation = (
+        <>
+            <StyledBurger
                     aria-controls="sidebar"
                     open={open}
                     onClick={() => setOpen(!open)}
-                >
-                    <div />
-                    <div />
-                    <div />
-                </StyledBurger>
-                <Sidebar id="sidebar" open={open} setOpen={setOpen} />
-            </>
-        )
-    } else {
-        navigation = <Navbar />
-    }
-
-    return (
-        <StyledHeader initial={{ opacity: 0, y: -10 }} animate={controls}>
-            {/* add blur class to body when sidebar is opened */}
-            <Helmet bodyAttributes={{ class: open ? 'blur' : '' }} />
-            <StyledContentWrapper>
-                <Link to="/" aria-label="home">
-                    <Logo color="primary" size="2rem" />
-                </Link>
-                {navigation}
-            </StyledContentWrapper>
-        </StyledHeader>
+            >
+                <div />
+                <div />
+                <div />
+            </StyledBurger>
+            <Sidebar id="sidebar" open={open} setOpen={setOpen} />
+        </>
     )
+  } else {
+    navigation = <Navbar />
+  }
+
+  return (
+      <StyledHeader initial={{ opacity: 0, y: -10 }} animate={controls}>
+          {/* add blur class to body when sidebar is opened */}
+          <Helmet bodyAttributes={{ class: open ? 'blur' : '' }} />
+          <StyledContentWrapper>
+              <Link to="/" aria-label="home">
+                  <Logo color="primary" size="2rem" />
+              </Link>
+              {navigation}
+          </StyledContentWrapper>
+      </StyledHeader>
+  )
 }
 
 export default Header

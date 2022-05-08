@@ -21,11 +21,11 @@ const Xing = ({ color }) => (
 )
 
 Xing.propTypes = {
-    color: PropTypes.string,
+  color: PropTypes.string,
 }
 
 Xing.defaultProps = {
-    color: '#000000',
+  color: '#000000',
 }
 
 export default Xing

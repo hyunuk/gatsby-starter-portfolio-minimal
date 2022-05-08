@@ -28,11 +28,11 @@ const External = ({ color }) => (
 )
 
 External.propTypes = {
-    color: PropTypes.string,
+  color: PropTypes.string,
 }
 
 External.defaultProps = {
-    color: '#000000',
+  color: '#000000',
 }
 
 export default External

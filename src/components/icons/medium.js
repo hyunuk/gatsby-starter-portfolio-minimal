@@ -20,11 +20,11 @@ const Medium = ({ color }) => (
 )
 
 Medium.propTypes = {
-    color: PropTypes.string,
+  color: PropTypes.string,
 }
 
 Medium.defaultProps = {
-    color: '#000000',
+  color: '#000000',
 }
 
 export default Medium

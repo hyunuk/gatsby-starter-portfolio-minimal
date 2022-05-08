@@ -96,7 +96,7 @@ const StyledSocialProfile = styled.a`
 `
 
 const Social = ({
-    width, padding, fontSize, fontWeight, withIcon,
+  width, padding, fontSize, fontWeight, withIcon,
 }) => (
     <StyledSocialWrapper itemCount={socialMedia.length}>
         {socialMedia.map(({ name, url }, key) => (
@@ -111,7 +111,8 @@ const Social = ({
                 fontSize={fontSize}
                 fontWeight={fontWeight}
             >
-                {withIcon ? <Icon name={name} /> : null}
+                {withIcon ? null : null}
+                {/* {withIcon ? <Icon name={name} /> : null} */}
                 {' '}
                 {name}
             </StyledSocialProfile>
@@ -120,11 +121,11 @@ const Social = ({
 )
 
 Social.propTypes = {
-    width: PropTypes.string,
-    padding: PropTypes.string,
-    fontSize: PropTypes.string,
-    fontWeight: PropTypes.string,
-    withIcon: PropTypes.bool,
+  width: PropTypes.string,
+  padding: PropTypes.string,
+  fontSize: PropTypes.string,
+  fontWeight: PropTypes.string,
+  withIcon: PropTypes.bool,
 }
 
 export default Social

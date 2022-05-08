@@ -5,6 +5,7 @@ import { graphql } from 'gatsby'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Hero from '../components/sections/hero'
+import Articles from '../components/sections/articles'
 import About from '../components/sections/about'
 import Interests from '../components/sections/interests'
 import Projects from '../components/sections/projects'
@@ -16,6 +17,7 @@ const IndexPage = ({ data }) => (
         <SEO title="Hyunuk's Portfolio Website" />
         <Hero content={data.hero.edges} />
         <About content={data.about.edges} />
+        <Articles />
         <Interests content={data.interests.edges} />
         <Projects content={data.projects.edges} />
         <Contact content={data.contact.edges} />
@@ -23,7 +25,7 @@ const IndexPage = ({ data }) => (
 )
 
 IndexPage.propTypes = {
-    data: PropTypes.object.isRequired,
+  data: PropTypes.object.isRequired,
 }
 
 export default IndexPage

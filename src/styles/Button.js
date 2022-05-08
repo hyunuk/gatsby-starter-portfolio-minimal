@@ -31,7 +31,7 @@ const StyledButton = styled.button`
 `
 
 const Button = ({
-    onClick, color, textAlign, center, children,
+  onClick, color, textAlign, center, children,
 }) => (
     <StyledButton onClick={onClick} color={color} textAlign={textAlign} center={center}>
         {children}
@@ -39,10 +39,10 @@ const Button = ({
 )
 
 Button.propTypes = {
-    onClick: PropTypes.func,
-    color: PropTypes.string,
-    textAlign: PropTypes.string,
-    center: PropTypes.bool,
+  onClick: PropTypes.func,
+  color: PropTypes.string,
+  textAlign: PropTypes.string,
+  center: PropTypes.bool,
 }
 
 export default Button

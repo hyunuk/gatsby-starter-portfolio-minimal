@@ -11,7 +11,7 @@ import Footer from './footer'
 
 // https://medium.com/@chrisfitkin/how-to-smooth-scroll-links-in-gatsby-3dc445299558
 if (typeof window !== 'undefined') {
-    require('smooth-scroll')('a[href*="#"]')
+  require('smooth-scroll')('a[href*="#"]')
 }
 
 const StyledLayoutWrapper = styled.div`
@@ -24,31 +24,31 @@ const StyledLayoutWrapper = styled.div`
 `
 
 const Layout = ({ children, splashScreen }) => {
-    // you can determine whether you want to have a splashScreen
-    // for each page in the respective page component
-    // if splashScreen = false, we set isIntroDone = true to skip
-    // the splashScreen
-    const [state, setState] = useState({
-        isIntroDone: !splashScreen,
-    })
+  // you can determine whether you want to have a splashScreen
+  // for each page in the respective page component
+  // if splashScreen = false, we set isIntroDone = true to skip
+  // the splashScreen
+  const [state, setState] = useState({
+    isIntroDone: !splashScreen,
+  })
 
-    return (
-        <StyledLayoutWrapper>
-            <Context.Provider value={{ state, setState }}>
-                <ThemeProvider theme={Theme}>
-                    <GlobalStyle />
-                    <Header />
-                    <main id="main-content">{children}</main>
-                    <Footer />
-                </ThemeProvider>
-            </Context.Provider>
-        </StyledLayoutWrapper>
-    )
+  return (
+      <StyledLayoutWrapper>
+          <Context.Provider value={{ state, setState }}>
+              <ThemeProvider theme={Theme}>
+                  <GlobalStyle />
+                  <Header />
+                  <main id="main-content">{children}</main>
+                  <Footer />
+              </ThemeProvider>
+          </Context.Provider>
+      </StyledLayoutWrapper>
+  )
 }
 
 Layout.propTypes = {
-    children: PropTypes.any,
-    splashScreen: PropTypes.bool.isRequired,
+  children: PropTypes.any,
+  splashScreen: PropTypes.bool.isRequired,
 }
 
 export default Layout

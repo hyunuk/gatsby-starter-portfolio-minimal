@@ -57,17 +57,17 @@ const StyledNav = styled.nav`
 `
 
 const Navbar = () => {
-    const { menu, button } = navLinks
-    return (
-        <StyledNav>
-            {menu.map(({ name, url }, key) => (
-                <Link className="nav-link" key={key} to={url}>
-                    {name}
-                </Link>
-            ))}
-            <Link className="cta-btn" to={button.url}>{button.name}</Link>
-        </StyledNav>
-    )
+  const { menu, button } = navLinks
+  return (
+      <StyledNav>
+          {menu.map(({ name, url }, key) => (
+              <Link className="nav-link" key={key} to={url}>
+                  {name}
+              </Link>
+          ))}
+          <Link className="cta-btn" to={button.url}>{button.name}</Link>
+      </StyledNav>
+  )
 }
 
 export default Navbar

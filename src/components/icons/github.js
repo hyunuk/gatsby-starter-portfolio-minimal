@@ -24,11 +24,11 @@ const Github = ({ color }) => (
 )
 
 Github.propTypes = {
-    color: PropTypes.string,
+  color: PropTypes.string,
 }
 
 Github.defaultProps = {
-    color: '#000000',
+  color: '#000000',
 }
 
 export default Github

@@ -190,150 +190,150 @@ const StyledProject = styled(motion.div)`
 `
 
 const Projects = ({ content }) => {
-    const sectionDetails = content[0].node
-    const projects = content.slice(1, content.length)
+  const sectionDetails = content[0].node
+  const projects = content.slice(1, content.length)
 
-    // visibleProject is needed to show which project is currently
-    // being viewed in the horizontal slider on mobile and tablet
-    const [visibleProject, setVisibleProject] = useState(1)
+  // visibleProject is needed to show which project is currently
+  // being viewed in the horizontal slider on mobile and tablet
+  const [visibleProject, setVisibleProject] = useState(1)
 
-    // projects don't track the visibility by using the onScreen hook
-    // instead they use react-visibility-sensor, therefore their visibility
-    // is also stored differently
-    const [onScreen, setOnScreen] = useState({})
-    const handleOnScreen = el => {
-        if (!onScreen[el]) {
-            const updatedOnScreen = { ...onScreen }
-            updatedOnScreen[el] = true
-            setOnScreen(updatedOnScreen)
-        }
+  // projects don't track the visibility by using the onScreen hook
+  // instead they use react-visibility-sensor, therefore their visibility
+  // is also stored differently
+  const [onScreen, setOnScreen] = useState({})
+  const handleOnScreen = el => {
+    if (!onScreen[el]) {
+      const updatedOnScreen = { ...onScreen }
+      updatedOnScreen[el] = true
+      setOnScreen(updatedOnScreen)
     }
-    const pVariants = {
-        hidden: { opacity: 0, y: 20 },
-        visible: { opacity: 1, y: 0 },
-    }
+  }
+  const pVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  }
 
-    useEffect(() => {
+  useEffect(() => {
     // mobile and tablet only: set first project as visible in the
     // horizontal slider
-        setVisibleProject(1)
-        // required for animations: set visibility for all projects to
-        // "false" initially
-        const initial = {}
-        projects.forEach(project => {
-            initial[project.node.frontmatter.position] = false
-        })
-        setOnScreen(initial)
-    }, [])
+    setVisibleProject(1)
+    // required for animations: set visibility for all projects to
+    // "false" initially
+    const initial = {}
+    projects.forEach(project => {
+      initial[project.node.frontmatter.position] = false
+    })
+    setOnScreen(initial)
+  }, [])
 
-    // Required for animating the title
-    const tRef = useRef()
-    const tOnScreen = useOnScreen(tRef)
-    const tVariants = {
-        hidden: { opacity: 0 },
-        visible: { opacity: 1 },
-    }
+  // Required for animating the title
+  const tRef = useRef()
+  const tOnScreen = useOnScreen(tRef)
+  const tVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+  }
 
-    // Required for animating the button
-    const bRef = useRef()
-    const bOnScreen = useOnScreen(bRef)
-    const bVariants = {
-        hidden: { opacity: 0 },
-        visible: { opacity: 1 },
-    }
+  // Required for animating the button
+  const bRef = useRef()
+  const bOnScreen = useOnScreen(bRef)
+  const bVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+  }
 
-    return (
-        <StyledSection id="projects">
-            <StyledContentWrapper>
-                <motion.div
+  return (
+      <StyledSection id="projects">
+          <StyledContentWrapper>
+              <motion.div
                     ref={tRef}
                     variants={tVariants}
                     animate={tOnScreen ? 'visible' : 'hidden'}
-                >
-                    <h3 className="section-title">{sectionDetails.frontmatter.title}</h3>
-                    <div className="counter">
-                        {visibleProject}
-                        {' '}
-                        /
-                        {projects.length}
-                    </div>
-                </motion.div>
-                <div className="projects">
-                    {projects.map(project => {
-                        const { body, frontmatter } = project.node
-                        return (
-                            <VisibilitySensor
+              >
+                  <h3 className="section-title">{sectionDetails.frontmatter.title}</h3>
+                  <div className="counter">
+                      {visibleProject}
+                      {' '}
+                      /
+                      {projects.length}
+                  </div>
+              </motion.div>
+              <div className="projects">
+                  {projects.map(project => {
+                    const { body, frontmatter } = project.node
+                    return (
+                        <VisibilitySensor
                                 key={frontmatter.position}
                                 onChange={() => handleOnScreen(frontmatter.position)}
                                 partialVisibility
                                 minTopValue={100}
-                            >
-                                <StyledProject
+                        >
+                            <StyledProject
                                     position={frontmatter.position}
                                     variants={pVariants}
                                     animate={
                                         onScreen[frontmatter.position] ? 'visible' : 'hidden'
                                     }
-                                >
-                                    <div className="details">
-                                        <div className="category">
-                                            {frontmatter.emoji}
-                                            {' '}
-                                            {frontmatter.category}
-                                        </div>
-                                        <div className="title">{frontmatter.title}</div>
-                                        <MDXRenderer>{body}</MDXRenderer>
-                                        <div className="tags">
-                                            {frontmatter.tags.map(tag => (
-                                                <Underlining
+                            >
+                                <div className="details">
+                                    <div className="category">
+                                        {frontmatter.emoji}
+                                        {' '}
+                                        {frontmatter.category}
+                                    </div>
+                                    <div className="title">{frontmatter.title}</div>
+                                    <MDXRenderer>{body}</MDXRenderer>
+                                    <div className="tags">
+                                        {frontmatter.tags.map(tag => (
+                                            <Underlining
                                                     key={tag}
                                                     color="secondary"
                                                     hoverColor="secondary"
-                                                >
-                                                    {tag}
-                                                </Underlining>
-                                            ))}
-                                        </div>
-                                        <div className="links">
-                                            {frontmatter.github && (
-                                                <a
+                                            >
+                                                {tag}
+                                            </Underlining>
+                                        ))}
+                                    </div>
+                                    <div className="links">
+                                        {frontmatter.github && (
+                                        <a
                                                     href={frontmatter.github}
                                                     target="_blank"
                                                     rel="nofollow noopener noreferrer"
                                                     aria-label="External Link"
-                                                >
-                                                    <Icon name="github" color="#888888" />
-                                                </a>
-                                            )}
-                                            {frontmatter.external && (
-                                                <a
+                                        >
+                                            <Icon name="github" color="#888888" />
+                                        </a>
+                                        )}
+                                        {frontmatter.external && (
+                                        <a
                                                     href={frontmatter.external}
                                                     target="_blank"
                                                     rel="nofollow noopener noreferrer"
                                                     aria-label="External Link"
-                                                >
-                                                    <Icon name="external" color="#888888" />
-                                                </a>
-                                            )}
-                                        </div>
+                                        >
+                                            <Icon name="external" color="#888888" />
+                                        </a>
+                                        )}
                                     </div>
-                                    {/* If image in viewport changes, update state accordingly */}
-                                    <VisibilitySensor
+                                </div>
+                                {/* If image in viewport changes, update state accordingly */}
+                                <VisibilitySensor
                                         onChange={() => setVisibleProject(frontmatter.position)}
-                                    >
-                                        <Img
+                                >
+                                    <Img
                                             className="screenshot"
                                             fluid={frontmatter.screenshot.childImageSharp.fluid}
-                                        />
-                                    </VisibilitySensor>
-                                </StyledProject>
-                            </VisibilitySensor>
-                        )
-                    })}
-                </div>
-            </StyledContentWrapper>
-            {sectionDetails.frontmatter.buttonVisible === 'true' && (
-                <motion.a
+                                    />
+                                </VisibilitySensor>
+                            </StyledProject>
+                        </VisibilitySensor>
+                    )
+                  })}
+              </div>
+          </StyledContentWrapper>
+          {sectionDetails.frontmatter.buttonVisible === 'true' && (
+          <motion.a
                     ref={bRef}
                     variants={bVariants}
                     animate={bOnScreen ? 'visible' : 'hidden'}
@@ -342,25 +342,25 @@ const Projects = ({ content }) => {
                     target="_blank"
                     rel="nofollow noopener noreferrer"
                     aria-label="External Link"
-                >
-                    <Button type="button" textAlign="center" color="primary" center>
-                        {sectionDetails.frontmatter.buttonText}
-                    </Button>
-                </motion.a>
-            )}
-        </StyledSection>
-    )
+          >
+              <Button type="button" textAlign="center" color="primary" center>
+                  {sectionDetails.frontmatter.buttonText}
+              </Button>
+          </motion.a>
+          )}
+      </StyledSection>
+  )
 }
 
 Projects.propTypes = {
-    content: PropTypes.arrayOf(
-        PropTypes.shape({
-            node: PropTypes.shape({
-                body: PropTypes.string.isRequired,
-                frontmatter: PropTypes.object.isRequired,
-            }).isRequired,
-        }).isRequired,
-    ).isRequired,
+  content: PropTypes.arrayOf(
+    PropTypes.shape({
+      node: PropTypes.shape({
+        body: PropTypes.string.isRequired,
+        frontmatter: PropTypes.object.isRequired,
+      }).isRequired,
+    }).isRequired,
+  ).isRequired,
 }
 
 export default Projects

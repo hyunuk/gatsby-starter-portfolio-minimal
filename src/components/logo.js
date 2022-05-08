@@ -29,8 +29,8 @@ const Logo = ({ size, color }) => (
 )
 
 Logo.propTypes = {
-    size: PropTypes.string,
-    color: PropTypes.string,
+  size: PropTypes.string,
+  color: PropTypes.string,
 }
 
 export default Logo

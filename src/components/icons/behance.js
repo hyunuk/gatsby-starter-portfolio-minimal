@@ -53,11 +53,11 @@ const Behance = ({ color }) => (
 )
 
 Behance.propTypes = {
-    color: PropTypes.string,
+  color: PropTypes.string,
 }
 
 Behance.defaultProps = {
-    color: '#000000',
+  color: '#000000',
 }
 
 export default Behance

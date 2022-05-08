@@ -75,29 +75,29 @@ const StyledNav = styled.nav`
 `
 
 const Sidebar = ({ open, setOpen }) => {
-    const { menu, button } = navLinks
-    return (
-        <>
-            <StyledContainer open={open} aria-hidden={!open} tabIndex={open ? 1 : -1}>
-                <StyledNav>
-                    {menu.map(({ name, url }, key) => (
-                        <Link className="nav-link" key={key} to={url} onClick={() => setOpen(!open)}>
-                            {name}
-                        </Link>
-                    ))}
-                    <Link className="cta-btn" to={button.url} onClick={() => setOpen(!open)}>
-                        {button.name}
-                    </Link>
-                </StyledNav>
-            </StyledContainer>
-            <StyledBackdrop open={open} />
-        </>
-    )
+  const { menu, button } = navLinks
+  return (
+      <>
+          <StyledContainer open={open} aria-hidden={!open} tabIndex={open ? 1 : -1}>
+              <StyledNav>
+                  {menu.map(({ name, url }, key) => (
+                      <Link className="nav-link" key={key} to={url} onClick={() => setOpen(!open)}>
+                          {name}
+                      </Link>
+                  ))}
+                  <Link className="cta-btn" to={button.url} onClick={() => setOpen(!open)}>
+                      {button.name}
+                  </Link>
+              </StyledNav>
+          </StyledContainer>
+          <StyledBackdrop open={open} />
+      </>
+  )
 }
 
 Sidebar.propTypes = {
-    open: PropTypes.bool.isRequired,
-    setOpen: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+  setOpen: PropTypes.func.isRequired,
 }
 
 export default Sidebar

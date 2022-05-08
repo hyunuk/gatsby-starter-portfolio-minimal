@@ -60,48 +60,48 @@ const StyledContentWrapper = styled(ContentWrapper)`
 `
 
 const Contact = ({ content }) => {
-    const { body, frontmatter } = content[0].node
+  const { body, frontmatter } = content[0].node
 
-    // Required for animation
-    const ref = useRef()
-    const onScreen = useOnScreen(ref)
-    const variants = {
-        hidden: { opacity: 0, y: 20 },
-        visible: { opacity: 1, y: 0 },
-    }
+  // Required for animation
+  const ref = useRef()
+  const onScreen = useOnScreen(ref)
+  const variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  }
 
-    return (
-        <StyledSection id="contact" ref={ref} variants={variants} animate={onScreen ? 'visible' : 'hidden'}>
-            <StyledContentWrapper>
-                <h3>{frontmatter.title}</h3>
-                <MDXRenderer>{body}</MDXRenderer>
-                <div className="profile">
-                    <Img className="avatar" fluid={frontmatter.profileImage.childImageSharp.fluid} />
-                    <div className="details">
-                        <strong>{frontmatter.name}</strong>
-                        <br />
-                        <a href={`mailto:${frontmatter.email}`}>
-                            <Underlining color="secondary" hoverColor="secondary">
-                                {frontmatter.email}
-                            </Underlining>
-                        </a>
-                    </div>
-                </div>
-                <Social width="9rem" padding="0.5rem 1.25rem" withIcon />
-            </StyledContentWrapper>
-        </StyledSection>
-    )
+  return (
+      <StyledSection id="contact" ref={ref} variants={variants} animate={onScreen ? 'visible' : 'hidden'}>
+          <StyledContentWrapper>
+              <h3>{frontmatter.title}</h3>
+              <MDXRenderer>{body}</MDXRenderer>
+              <div className="profile">
+                  <Img className="avatar" fluid={frontmatter.profileImage.childImageSharp.fluid} />
+                  <div className="details">
+                      <strong>{frontmatter.name}</strong>
+                      <br />
+                      <a href={`mailto:${frontmatter.email}`}>
+                          <Underlining color="secondary" hoverColor="secondary">
+                              {frontmatter.email}
+                          </Underlining>
+                      </a>
+                  </div>
+              </div>
+              <Social width="9rem" padding="0.5rem 1.25rem" withIcon />
+          </StyledContentWrapper>
+      </StyledSection>
+  )
 }
 
 Contact.propTypes = {
-    content: PropTypes.arrayOf(
-        PropTypes.shape({
-            node: PropTypes.shape({
-                body: PropTypes.string.isRequired,
-                frontmatter: PropTypes.object.isRequired,
-            }).isRequired,
-        }).isRequired,
-    ).isRequired,
+  content: PropTypes.arrayOf(
+    PropTypes.shape({
+      node: PropTypes.shape({
+        body: PropTypes.string.isRequired,
+        frontmatter: PropTypes.object.isRequired,
+      }).isRequired,
+    }).isRequired,
+  ).isRequired,
 }
 
 export default Contact
